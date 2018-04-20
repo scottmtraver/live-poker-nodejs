@@ -1,0 +1,17 @@
+<html>
+
+<head>
+    <title>Websocket Test</title>
+</head>
+
+<body bgcolor=white>
+    <script>
+        var ws = new WebSocket('ws://10.0.1.8:5000');
+        // event emmited when receiving message 
+        ws.onmessage = function (ev) {
+            console.log(ev.data);
+        }
+    </script>
+</body>
+
+</html>
