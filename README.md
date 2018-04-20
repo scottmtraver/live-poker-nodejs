@@ -18,7 +18,7 @@ The root has an instructions index page
 You can run the program through the console for more finite control and view of the deck with
 
 ```
-npm run:console
+npm run console
 ```
 
 ## Running the tests
@@ -35,4 +35,6 @@ npm test
 
 ## Resources
 
+https://mochajs.org/
+http://sinonjs.org/
 https://github.com/websockets/ws#installing 

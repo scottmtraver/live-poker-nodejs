@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "test",
-    "start": "node server.js"
+    "start": "node server.js",
+    "console": "node console.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/scottmtraver/live-poker-nodejs/issues"
   },
-  "homepage": "https://github.com/scottmtraver/live-poker-nodejs#readme"
+  "homepage": "https://github.com/scottmtraver/live-poker-nodejs#readme",
+  "devDependencies": {
+    "mocha": "^5.1.1",
+    "sinon": "^4.5.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.5",
+    "ws": "^5.1.1"
+  }
 }
