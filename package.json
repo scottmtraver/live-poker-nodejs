@@ -1,0 +1,20 @@
+{
+  "name": "live-poker-nodejs",
+  "version": "0.0.1",
+  "description": "Texas Hold'em Websocket Server",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scottmtraver/live-poker-nodejs.git"
+  },
+  "author": "Scott Traver",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/scottmtraver/live-poker-nodejs/issues"
+  },
+  "homepage": "https://github.com/scottmtraver/live-poker-nodejs#readme"
+}
