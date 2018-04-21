@@ -15,7 +15,7 @@ wss.on('connection', function connection(ws) {
             if (games[data.gameCode]) {
                 games[data.gameCode].addPlayer(data.userName, ws);
                 ws.send(JSON.stringify({
-                    type: 'USER_JOIN',
+                    type: 'USER_JOINED',
                     userName: data.userName
                 }));
             } else {
@@ -27,7 +27,7 @@ wss.on('connection', function connection(ws) {
             console.log('Creating Game: ', newGame.gameCode);
             games[newGame.gameCode] = newGame;
             ws.send(JSON.stringify({
-                type: 'NEW_GAME',
+                type: 'GAME_CREATED',
                 gameCode: newGame.gameCode
             }));
         } else {
@@ -39,6 +39,8 @@ wss.on('connection', function connection(ws) {
 
 setInterval(function () {
     _.forOwn(games, function (game, code) {
-        game.deal();
+        if (game.isValid()) {
+            game.deal();
+        }
     });
-}, 5000)
+}, 5000);
