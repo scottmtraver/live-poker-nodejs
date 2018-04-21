@@ -31,7 +31,13 @@ wss.on('connection', function connection(ws) {
                 type: 'GAME_CREATED',
                 gameCode: newGame.gameCode
             }));
-            // this is the master websocket
+        } else if (data.type == 'DEAL') {
+            if (games[data.gameCode.toUpperCase()]) {
+                games[data.gameCode.toUpperCase()].deal();
+            } else {
+                ws.send('ERROR: INVALID GAME CODE');
+                ws.close();
+            }
         } else {
             ws.send('ERROR: INVALID MESSAGE DATA TYPE');
             ws.close();
@@ -39,10 +45,10 @@ wss.on('connection', function connection(ws) {
     });
 });
 
-setInterval(function () {
-    _.forOwn(games, function (game, code) {
-        if (game.isValid()) {
-            game.deal();
-        }
-    });
-}, 5000);
+// setInterval(function () {
+//     _.forOwn(games, function (game, code) {
+//         if (game.isValid() && game.readyForDeal) {
+//             game.deal();
+//         }
+//     });
+// }, 1000);
