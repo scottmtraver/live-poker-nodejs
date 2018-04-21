@@ -12,8 +12,8 @@ wss.on('connection', function connection(ws) {
         let data = JSON.parse(event)
         if (data.type == 'JOIN') {
             console.log('Joining Player...');
-            if (games[data.gameCode]) {
-                games[data.gameCode].addPlayer(data.userName, ws);
+            if (games[data.gameCode.toUpperCase()]) {
+                games[data.gameCode.toUpperCase()].addPlayer(data.userName, ws);
                 ws.send(JSON.stringify({
                     type: 'USER_JOINED',
                     userName: data.userName
@@ -23,13 +23,15 @@ wss.on('connection', function connection(ws) {
                 ws.close();
             }
         } else if (data.type == 'CREATE') {
-            let newGame = gameManager.createGame('random', ws);
+            // null uses random game code
+            let newGame = gameManager.createGame('RANDOM', ws);
             console.log('Creating Game: ', newGame.gameCode);
             games[newGame.gameCode] = newGame;
             ws.send(JSON.stringify({
                 type: 'GAME_CREATED',
                 gameCode: newGame.gameCode
             }));
+            // this is the master websocket
         } else {
             ws.send('ERROR: INVALID MESSAGE DATA TYPE');
             ws.close();
