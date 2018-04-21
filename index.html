@@ -4,12 +4,38 @@
     <title>Websocket Test</title>
 </head>
 
+<button onclick="joinGame()">JOIN GAME</button>
+<button onclick="createGame()">CREATE GAME</button>
+
 <body bgcolor=white>
     <script>
-        var ws = new WebSocket('ws://10.0.1.8:5000');
-        // event emmited when receiving message 
-        ws.onmessage = function (ev) {
-            console.log(ev.data);
+        function joinGame () {
+            var ws = new WebSocket('ws://10.0.1.8:5000');
+            ws.onopen = function (event) {
+                ws.send(JSON.stringify({
+                    userName: 'scotty',
+                    gameCode: 'random',
+                    type: 'JOIN'
+                })); 
+            };
+            // event emmited when receiving message 
+            ws.onmessage = function (ev) {
+                console.log(ev.data);
+            }
+
+        }
+        function createGame () {
+            var ws = new WebSocket('ws://10.0.1.8:5000');
+            ws.onopen = function (event) {
+                ws.send(JSON.stringify({
+                    type: 'CREATE'
+                })); 
+            };
+            // event emmited when receiving message 
+            ws.onmessage = function (ev) {
+                console.log(ev.data);
+            }
+
         }
     </script>
 </body>
