@@ -24,7 +24,7 @@ wss.on('connection', function connection(ws) {
             }
         } else if (data.type == 'CREATE') {
             // null uses random game code
-            let newGame = gameManager.createGame('RANDOM', ws);
+            let newGame = gameManager.createGame(null, ws);
             console.log('Creating Game: ', newGame.gameCode);
             games[newGame.gameCode] = newGame;
             ws.send(JSON.stringify({
