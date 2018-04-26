@@ -19,7 +19,7 @@ wss.on('connection', function connection(ws) {
                     userName: data.userName
                 }));
             } else {
-                ws.send('ERROR: INVALID GAME CODE');
+                ws.send({ type: 'ERROR', message: 'ERROR: Unable To Join Player' });
                 ws.close();
             }
         } else if (data.type == 'CREATE') {
@@ -35,11 +35,11 @@ wss.on('connection', function connection(ws) {
             if (games[data.gameCode.toUpperCase()]) {
                 games[data.gameCode.toUpperCase()].deal();
             } else {
-                ws.send('ERROR: INVALID GAME CODE');
+                ws.send({ type: 'ERROR', message: 'ERROR: Unable To Deal' });
                 ws.close();
             }
         } else {
-            ws.send('ERROR: INVALID MESSAGE DATA TYPE');
+            ws.send({ type: 'ERROR', message: 'ERROR: Invalid Incoming Data Type' });
             ws.close();
         }
     });
